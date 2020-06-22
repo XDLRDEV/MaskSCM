@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block main %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>贷款查询</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">贷款信息</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>贷款 ID</th>
+                                <th>贷款金额</th>
+                                <th>贷款时间</th>
+                                <th></th>
+                            </tr>
+                            {% for u in llist %}
+                            <tr>
+                                <td>{{ u[1] }}</td>
+                                <td>{{ u[0] }}</td>
+                                <td>{{ u[2] }}</td>
+                                <td>
+                                    <a href="#">查看详情</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div><!-- /.row -->
+    </section>
+</div>
+{% endblock %}

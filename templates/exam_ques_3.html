@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% block main %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>题目查找组卷</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">试题列表</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 80%;">
+                      <form class="form-horizontal" method="post">
+                    <input type="text" name="question_search" class="form-control float-left" placeholder="搜索知识点">
+
+                    <div class="input-group-append pull-right">
+                      <button type="submit" class="btn btn-default float-right"><i class="fa fa-search"></i></button>
+                    </div>
+                      </form>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                  <tr>
+                    <th>ID</th>
+                    <th>题型</th>
+                    <th>题目</th>
+                    <th>正确答案</th>
+                    <th>错误答案</th>
+                    <th>知识点</th>
+                      <th></th>
+                  </tr>
+                    {% for q in queslist %}
+                  <tr>
+                    <td><span class="badge bg-warning">{{ q['id'] }}</span></td>
+                    <td>
+                      {% if q['qtype']==0 %}
+                        选择
+                      {% elif q['qtype']==1 %}
+                        判断
+                      {% endif %}
+                    </td>
+                    <td>{{ q['question'] }}</td>
+                    <td><span class="badge bg-success" style="white-space: normal">{{ q['R_anwser'] }}</span></td>
+                    <td>
+                        {% for k in q['W_anwser'] %}
+                        <span class="badge bg-danger" style="white-space: normal">{{ k }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for k in q['kind'] %}
+                        <span class="badge bg-primary" style="white-space: normal">{{ k }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                      <a href="{{ url_for('add_Eques', qid=q['id']) }}" class="text-muted">
+                        <i class="fa fa-trash-o"></i>添加
+                      </a>
+                    </td>
+                  </tr>
+                    {% endfor %}
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div><!-- /.row -->
+    </section>
+  </div>
+{% endblock %}

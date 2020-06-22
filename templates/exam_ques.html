@@ -1,0 +1,210 @@
+{% extends "layout.html" %}
+{% block main %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>组卷及考试发布</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>试题ID组卷</h3>
+
+                <p>批量输入ID，试题添加更轻松</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="{{ url_for('exam_ques_1') }}" class="small-box-footer">开始组卷 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>题目查找组卷</h3>
+
+                <p>查找题目关键字，组卷更精确</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="{{ url_for('exam_ques_2') }}" class="small-box-footer">开始组卷 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>知识点组卷</h3>
+
+                <p>通过知识点，精准快速组卷</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="{{ url_for('exam_ques_3') }}" class="small-box-footer">开始组卷 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>历史组卷</h3>
+
+                <p>添加已考试题，组卷更容易</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="{{ url_for('exam_ques_4') }}" class="small-box-footer">开始组卷 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">试题列表</h3>
+              </div>
+              <form class="form-horizontal" method="post">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">试题名</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" name="exam_name" class="col-sm-4 form-control" id="inputEmail3" placeholder="在此输入试题名">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">考试日期</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" name="YYYY" class="col-sm-2 form-control" style="display: inline" placeholder="在此输入年份">&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;
+                      <select class="form-control col-sm-2" name="MMM" style="display: inline">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                      </select>&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;
+                      <input type="text" name="DD" class="col-sm-2 form-control" style="display: inline" placeholder="在此输入日期">&nbsp;&nbsp;&nbsp;日&nbsp;&nbsp;&nbsp;
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">考试时间</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" name="HH" class="col-sm-1 form-control" style="display: inline" placeholder="HH">&nbsp;&nbsp;:&nbsp;&nbsp;
+                      <input type="text" name="MM" class="col-sm-1 form-control" style="display: inline" placeholder="MM">&nbsp;&nbsp;:&nbsp;&nbsp;
+                      <input type="text" name="SS" class="col-sm-1 form-control" style="display: inline" placeholder="SS">&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="text" name="HHx" class="col-sm-1 form-control" style="display: inline" placeholder="HH">&nbsp;&nbsp;:&nbsp;&nbsp;
+                      <input type="text" name="MMx" class="col-sm-1 form-control" style="display: inline" placeholder="MM">&nbsp;&nbsp;:&nbsp;&nbsp;
+                      <input type="text" name="SSx" class="col-sm-1 form-control" style="display: inline" placeholder="SS">
+                    </div>
+                  </div>
+                  {% if error == 1 %}
+                <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <p><i class="icon fa fa-ban"></i> 不能没有试题!</p>
+                </div>
+                {% elif error == 2 %}
+                <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <p><i class="icon fa fa-ban"></i> 试题名不能为空!</p>
+                </div>
+                {% elif error == 3 %}
+                <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <p><i class="icon fa fa-ban"></i> 考试时间日期有缺失!</p>
+                </div>
+                {% elif error == -1 %}
+                <div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <p><i class="icon fa fa-check"></i> 试题添加成功!</p>
+                </div>
+                {% endif %}
+                </div>
+                <!-- /.card-body -->
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                  <tr>
+                    <th>ID</th>
+                    <th>题型</th>
+                    <th>题目</th>
+                    <th>正确答案</th>
+                    <th>错误答案</th>
+                    <th>知识点</th>
+                    <th></th>
+                  </tr>
+                    {% for q in queslist %}
+                  <tr>
+                    <td><span class="badge bg-warning">{{ q['id'] }}</span></td>
+                    <td>
+                      {% if q['qtype']==0 %}
+                        选择
+                      {% elif q['qtype']==1 %}
+                        判断
+                      {% endif %}
+                    </td>
+                    <td>{{ q['question'] }}</td>
+                    <td><span class="badge bg-success" style="white-space: normal">{{ q['R_anwser'] }}</span></td>
+                    <td>
+                        {% for k in q['W_anwser'] %}
+                        <span class="badge bg-danger" style="white-space: normal">{{ k }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for k in q['kind'] %}
+                        <span class="badge bg-primary" style="white-space: normal">{{ k }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                      <a href="{{ url_for('del_Eques', qid=q['id']) }}" class="text-muted">
+                        <i class="fa fa-trash-o"></i>删除
+                      </a>
+                    </td>
+                  </tr>
+                    {% endfor %}
+                </table>
+              </div>
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-info">提交</button>
+                </div>
+                <!-- /.card-footer -->
+              </form>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div><!-- /.row -->
+    </section>
+</div>
+{% endblock %}

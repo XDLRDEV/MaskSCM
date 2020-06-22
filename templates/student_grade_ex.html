@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+{% block main %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{ name }}</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="timeline">
+                    <!-- The timeline -->
+                    <ul class="timeline timeline-inverse">
+                      <!-- timeline item -->
+
+                      <!-- timeline time label -->
+                      <li class="time-label">
+                        <span class="bg-success">
+                          选择题
+                        </span>
+                      </li>
+                      <!-- /.timeline-label -->
+                      {% for q in questiontable0 %}
+                      <li>
+                        <i class="fa fa-envelope bg-primary"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="fa fa-clock-o"></i> 选择题</span>
+
+                            <h3 class="timeline-header"><a href="#">第{{ loop.index }}题</a></h3>
+
+                          <div class="timeline-body">
+                              <h5>{{ q['question'] }}</h5>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <label class="form-check-label text-success">{{ q['asn'][0] }}</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label{% if q['my_ans']=='2' %} text-danger{% endif %}">{{ q['asn'][1] }}</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label{% if q['my_ans']=='3' %} text-danger{% endif %}">{{ q['asn'][2] }}</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label{% if q['my_ans']=='4' %} text-danger{% endif %}">{{ q['asn'][3] }}</label>
+                                    </div>
+                                </div>
+                          </div>
+                          <!--<div class="timeline-footer">-->
+                            <!--<a href="#" class="btn btn-primary btn-sm">Read more</a>-->
+                            <!--<a href="#" class="btn btn-danger btn-sm">Delete</a>-->
+                          <!--</div>-->
+                        </div>
+                      </li>
+                      {% endfor %}
+                      <!-- END timeline item -->
+                      <!-- timeline time label -->
+                      <li class="time-label">
+                        <span class="bg-success">
+                          判断题
+                        </span>
+                      </li>
+                      <!-- /.timeline-label -->
+                      {% for q in questiontable1 %}
+                      <li>
+                        <i class="fa fa-envelope bg-primary"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="fa fa-clock-o"></i> 判断题</span>
+
+                            <h3 class="timeline-header"><a href="#">第{{ loop.index }}题</a></h3>
+
+                          <div class="timeline-body">
+                              <h5>{{ q['question'] }}</h5>
+                                <div class="form-group">
+                                    {% if q['anwser'] == 1 %}
+                                    <div class="form-check">
+                                        <label class="form-check-label {% if q['my_ans']=='1' %}text-success{% else %}text-danger{% endif %}">正确</label>
+                                    </div>
+                                    {% elif q['anwser'] == 2 %}
+                                    <div class="form-check">
+                                        <label class="form-check-label {% if q['my_ans']=='1' %}text-success{% else %}text-danger{% endif %}">错误</label>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                          </div>
+                          <!--<div class="timeline-footer">-->
+                            <!--<a href="#" class="btn btn-primary btn-sm">Read more</a>-->
+                            <!--<a href="#" class="btn btn-danger btn-sm">Delete</a>-->
+                          <!--</div>-->
+                        </div>
+                      </li>
+                      {% endfor %}
+                      <!-- END timeline item -->
+                      <li>
+                        <i class="fa fa-clock-o bg-gray"></i>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- /.tab-pane -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+{% endblock %}

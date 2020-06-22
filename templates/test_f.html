@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block main %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>拒绝访问！</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="error-page">
+        <h2 class="headline text-danger">槽糕！</h2>
+
+        <div class="error-content">
+          <h3><i class="fa fa-warning text-danger"></i> 您没有参与本次考试的权限！</h3>
+          <p>可能的原因有：</p>
+            <ol>
+                <li>当前时间不是考试时间</li>
+                <li>您不是学生用户</li>
+                <li>您已经提交过该答卷</li>
+            </ol>
+          <p>
+            你可以 <a href="{{ url_for('index') }}">返回主页</a>
+          </p>
+          </form>
+        </div>
+      </div>
+      <!-- /.error-page -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+{% block main %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>加工产品</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="card card-info" style="width: 90%;margin:30px 5%;">
+                    <div class="card-header">
+                        <h3 class="card-title">填写产品信息</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form class="form-horizontal" method="post">
+                        <div class="card-body">
+                            <div class="form-group">
+                                {% for u in user['stn'] %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="{{ u }}">
+                                    <label class="form-check-label">{{ u }}</label>
+                                </div>
+                                {% endfor %}
+                                <label for="input1" class="col-sm-2 control-label">产品量</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" name="num" class="col-sm-4 form-control" id="input1"
+                                           placeholder="在此输入产品量">
+                                </div>
+                                <label for="input2" class="col-sm-2 control-label">产品名</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" name="name" class="col-sm-4 form-control" id="input2"
+                                           placeholder="在此输入产品名">
+                                </div>
+                            </div>
+                            {% if error == 1 %}
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                                </button>
+                                <p><i class="icon fa fa-ban"></i> 加工失败!</p>
+                            </div>
+                            {% elif error == 2 %}
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                                </button>
+                                <p><i class="icon fa fa-ban"></i> 产品量不能为空!</p>
+                            </div>
+                            {% elif error == 3 %}
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                                </button>
+                                <p><i class="icon fa fa-ban"></i> 产品名不能为空!</p>
+                            </div>
+                            {% elif error == -1 %}
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                                </button>
+                                <p><i class="icon fa fa-check"></i> 货物加工成功!</p>
+                            </div>
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                                </button>
+                                <p><i class="icon fa fa-check"></i> 货品链上ID为：<b>{{ au }}</b></p>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info">提交</button>
+                        </div>
+                        <!-- /.card-footer -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

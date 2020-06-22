@@ -1,0 +1,125 @@
+{% extends "layout.html" %}
+{% block main %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{ examtable['name'] }}</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <form method="POST">
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="timeline">
+                    <!-- The timeline -->
+                    <ul class="timeline timeline-inverse">
+                      <!-- timeline item -->
+
+                      <!-- timeline time label -->
+                      <li class="time-label">
+                        <span class="bg-success">
+                          选择题
+                        </span>
+                      </li>
+                      <!-- /.timeline-label -->
+                      {% for q in questiontable0 %}
+                      <li>
+                        <i class="fa fa-envelope bg-primary"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="fa fa-clock-o"></i> 选择题</span>
+
+                            <h3 class="timeline-header"><a href="#">第{{ loop.index }}题</a></h3>
+
+                          <div class="timeline-body">
+                              <h5>{{ q['question'] }}</h5>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="0_{{ loop.index }}" type="radio" value="{{ q['asn'][0][0] }}">
+                                        <label class="form-check-label">{{ q['asn'][0][1] }}</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="0_{{ loop.index }}" type="radio" value="{{ q['asn'][1][0] }}">
+                                        <label class="form-check-label">{{ q['asn'][1][1] }}</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="0_{{ loop.index }}" type="radio" value="{{ q['asn'][2][0] }}">
+                                        <label class="form-check-label">{{ q['asn'][2][1] }}</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="0_{{ loop.index }}" type="radio" value="{{ q['asn'][3][0] }}">
+                                        <label class="form-check-label">{{ q['asn'][3][1] }}</label>
+                                    </div>
+                                </div>
+                          </div>
+                          <!--<div class="timeline-footer">-->
+                            <!--<a href="#" class="btn btn-primary btn-sm">Read more</a>-->
+                            <!--<a href="#" class="btn btn-danger btn-sm">Delete</a>-->
+                          <!--</div>-->
+                        </div>
+                      </li>
+                      {% endfor %}
+                      <!-- END timeline item -->
+                      <!-- timeline time label -->
+                      <li class="time-label">
+                        <span class="bg-success">
+                          判断题
+                        </span>
+                      </li>
+                      <!-- /.timeline-label -->
+                      {% for q in questiontable1 %}
+                      <li>
+                        <i class="fa fa-envelope bg-primary"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="fa fa-clock-o"></i> 判断题</span>
+
+                            <h3 class="timeline-header"><a href="#">第{{ loop.index }}题</a></h3>
+
+                          <div class="timeline-body">
+                              <h5>{{ q['question'] }}</h5>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="1_{{ loop.index }}" type="radio" value="{% if q['anwser'] == 1 %}1{% else %}2{% endif %}">
+                                        <label class="form-check-label">正确</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="1_{{ loop.index }}" type="radio" value="{% if q['anwser'] == 1 %}2{% else %}1{% endif %}">
+                                        <label class="form-check-label">错误</label>
+                                    </div>
+                                </div>
+                          </div>
+                          <!--<div class="timeline-footer">-->
+                            <!--<a href="#" class="btn btn-primary btn-sm">Read more</a>-->
+                            <!--<a href="#" class="btn btn-danger btn-sm">Delete</a>-->
+                          <!--</div>-->
+                        </div>
+                      </li>
+                      {% endfor %}
+                    <li>
+                        <i class="fa fa-user bg-success"></i>
+                        <div class="timeline-item">
+                          <div class="timeline-body">
+                              <button type="submit" class="btn btn-info">提交</button>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- END timeline item -->
+                      <li>
+                        <i class="fa fa-clock-o bg-gray"></i>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- /.tab-pane -->
+        </form>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+{% endblock %}

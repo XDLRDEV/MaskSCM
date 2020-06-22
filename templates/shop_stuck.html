@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block main %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>库存信息</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">货物列表</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>货物 ID</th>
+                                <th>货物内容</th>
+                                <th></th>
+                            </tr>
+                            {% for u in stucklist %}
+                            <tr>
+                                <td>{{ u[0] }}</td>
+                                <td>{{ u[1] }}{{ u[2] }}</td>
+                                <td>
+                                    <a href="{{ url_for('buy', sid=sid, uid=u[0]) }}">购买</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div><!-- /.row -->
+    </section>
+</div>
+{% endblock %}

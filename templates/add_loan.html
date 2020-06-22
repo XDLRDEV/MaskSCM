@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% block main %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>发放贷款</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="card card-info" style="width: 90%;margin:30px 5%;">
+                    <div class="card-header">
+                        <h3 class="card-title">填写贷款信息</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form class="form-horizontal" method="post">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">贷款金额</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" name="money" class="col-sm-4 form-control" id="inputEmail3"
+                                           placeholder="在此输入贷款金额">
+                                </div>
+                                <label class="col-sm-2 control-label">目标厂商</label>
+                                {% for u in sp_list %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sp" value="{{ u }}">
+                                    <label class="form-check-label">{{ u }}</label>
+                                </div>
+                                {% endfor %}
+                                <label class="col-sm-2 control-label">限制购买渠道</label>
+                                {% for u in sp_list %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="{{ u }}">
+                                    <label class="form-check-label">{{ u }}</label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% if error == 1 %}
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                                </button>
+                                <p><i class="icon fa fa-ban"></i> 放贷失败!</p>
+                            </div>
+                            {% elif error == 2 %}
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                                </button>
+                                <p><i class="icon fa fa-ban"></i> 价格不能为空!</p>
+                            </div>
+                            {% elif error == 3 %}
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                                </button>
+                                <p><i class="icon fa fa-ban"></i> 厂商不能为空!</p>
+                            </div>
+                            {% elif error == -1 %}
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                                </button>
+                                <p><i class="icon fa fa-check"></i> 贷款 {{ au }} 添加成功!</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info">提交</button>
+                        </div>
+                        <!-- /.card-footer -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

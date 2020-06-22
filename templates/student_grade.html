@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block main %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>成绩查询</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">试卷列表</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                  <tr>
+                    <th>试卷ID</th>
+                    <th>选择题正确率</th>
+                    <th>判断题正确率</th>
+                    <th></th>
+                  </tr>
+                    {% for g in gradelist %}
+                  <tr>
+                    <td>{{ g['exam_id'] }}</td>
+                    <td>{{ g['0_rate'] }}</td>
+                    <td>{{ g['1_rate'] }}</td>
+                    <td>
+                        <a href="{{ url_for('student_grade_ex', eid=g['exam_id']) }}" class="text-muted">
+                            <i class="fa fa-data"></i>详细信息</a>
+                    </td>
+                  </tr>
+                    {% endfor %}
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div><!-- /.row -->
+    </section>
+  </div>
+{% endblock %}

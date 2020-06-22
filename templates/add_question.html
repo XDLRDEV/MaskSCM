@@ -1,0 +1,143 @@
+{% extends "layout.html" %}
+{% block main %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>添加试题</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+          <div class="col-12">
+            <!-- Custom Tabs -->
+            <div class="card">
+              <div class="card-header d-flex p-0">
+                <h3 class="card-title p-3">添加题目</h3>
+                <ul class="nav nav-pills ml-auto p-2">
+                  <li class="nav-item"><a class="nav-link active" href="#tab_1" data-toggle="tab">选择题</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">判断题</a></li>
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="tab-pane active" id="tab_1">
+
+              <!-- form start -->
+              <form class="form-horizontal" method="post">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">题目</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" name="question" class="col-sm-10 form-control" id="inputEmail3" placeholder="在此输入试题题目">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">答案</label>
+
+                    <div class="col-sm-10">
+                      A.<input type="text" name="anwser_A" class="col-sm-2 form-control" style="display: inline" placeholder="请在此输入答案">
+                      &nbsp;&nbsp;B.<input type="text" name="anwser_B" class="col-sm-2 form-control" style="display: inline" placeholder="请在此输入答案">
+                      &nbsp;&nbsp;C.<input type="text" name="anwser_C" class="col-sm-2 form-control" style="display: inline" placeholder="请在此输入答案">
+                      &nbsp;&nbsp;D.<input type="text" name="anwser_D" class="col-sm-2 form-control" style="display: inline" placeholder="请在此输入答案">
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">知识点</label>
+                    <p>（在此输入试题的知识点，用"/"隔开）</p>
+                    <div class="col-sm-10">
+                      <input type="text" name="kind" class="col-sm-5 form-control" placeholder="在此输入试题的知识点，用‘/’隔开">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>正确答案</label>
+                    <select class="form-control col-sm-4" name="R">
+                      <option value="1">A</option>
+                      <option value="2">B</option>
+                      <option value="3">C</option>
+                      <option value="4">D</option>
+                    </select>
+                  </div>
+                  {% if error == 1 %}
+                <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <p><i class="icon fa fa-ban"></i> 答案不得为空!</p>
+                </div>
+                {% elif error == 2 %}
+                <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <p><i class="icon fa fa-ban"></i> 题目不得为空!</p>
+                </div>
+                {% elif error == -1 %}
+                <div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <p><i class="icon fa fa-check"></i> 试题添加成功!</p>
+                </div>
+                {% endif %}
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-info">添加</button>
+                </div>
+                <!-- /.card-footer -->
+              </form>
+                  </div>
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="tab_2">
+              <!-- form start -->
+              <form class="form-horizontal" method="post">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">题目</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" name="question" class="col-sm-10 form-control" id="inputEmail3" placeholder="在此输入试题题目">
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">知识点</label>
+                    <p>（在此输入试题的知识点，用"/"隔开）</p>
+                    <div class="col-sm-10">
+                      <input type="text" name="kind" class="col-sm-2 form-control" eholder="在此输入试题的知识点，用‘/’隔开">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>正确答案</label>
+                    <select class="form-control col-sm-4" name="R">
+                      <option value="1">√</option>
+                      <option value="2">×</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-info">添加</button>
+                </div>
+                <!-- /.card-footer -->
+              </form>
+                  </div>
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- ./card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+</div>
+{% endblock %}

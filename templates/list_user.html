@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block main %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>查询账户</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">用户列表</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>用户 ID</th>
+                                <th>用户名</th>
+                                <th>用户类型</th>
+                                <th>账户余额</th>
+                            </tr>
+                            {% for u in userlist %}
+                            <tr>
+                                <td>{{ u[0] }}</td>
+                                <td>{{ u[1] }}</td>
+                                <td>
+                                    {% if u[2] == 0 %}
+                                    管理员
+                                    {% elif u[2] == 1 %}
+                                    供应商
+                                    {% elif u[2] == 2 %}
+                                    用粮厂商
+                                    {% endif %}
+                                </td>
+                                <td>{{ u[3] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div><!-- /.row -->
+    </section>
+</div>
+{% endblock %}
